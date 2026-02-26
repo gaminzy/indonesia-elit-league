@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indonesia Elit League</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #d32f2f;
+            --secondary: #fff;
+            --accent: #ffc107;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), #b71c1c);
+            color: var(--secondary);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), #b71c1c);
+            color: var(--secondary);
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,193,7,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            background: transparent;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Section */
+        .section {
+            padding: 60px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section h2 {
+            font-size: 42px;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .rank {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        .points {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--secondary);
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .footer-content h4 {
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .footer-content a {
+            color: var(--secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            transition: 0.3s;
+        }
+        
+        .footer-content a:hover {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            opacity: 0.9;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+            
+            .section h2 {
+                font-size: 28px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span>⚽</span>
+                <span>IEL</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#clubs">Klub</a></li>
+                <li><a href="#standings">Klasemen</a></li>
+                <li><a href="#news">Berita</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Indonesia Elit League</h1>
+            <p>Kompetisi Sepak Bola Elite Standar Internasional</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollTo('clubs')">Lihat Klub</button>
+                <button class="btn btn-secondary" onclick="scrollTo('standings')">Klasemen</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Clubs Section -->
+        <section class="section" id="clubs">
+            <h2>🏟️ Klub - Indonesia Elit League</h2>
+            <div class="grid" id="clubs-grid">
+                <div class="card">
+                    <h3>Arema FC</h3>
+                    <p><strong>📍 Kota:</strong> Malang</p>
+                    <p><strong>🏟️ Stadion:</strong> Stadion Kanjuruhan</p>
+                    <p><strong>👨‍💼 Pelatih:</strong> Milomir Seslej</p>
+                    <p><strong>📅 Berdiri:</strong> 1987</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Persija Jakarta</h3>
+                    <p><strong>📍 Kota:</strong> Jakarta</p>
+                    <p><strong>🏟️ Stadion:</strong> Stadion Utama GBK</p>
+                    <p><strong>👨‍💼 Pelatih:</strong> Marko Milic</p>
+                    <p><strong>📅 Berdiri:</strong> 1928</p>
+                </div>
+                
+                <div class="card">
+                    <h3>PSM Makassar</h3>
+                    <p><strong>📍 Kota:</strong> Makassar</p>
+                    <p><strong>🏟️ Stadion:</strong> Stadion Andi Mattalatta</p>
+                    <p><strong>👨‍💼 Pelatih:</strong> Jangkung Daryono</p>
+                    <p><strong>📅 Berdiri:</strong> 1915</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Bali United</h3>
+                    <p><strong>📍 Kota:</strong> Bali</p>
+                    <p><strong>🏟️ Stadion:</strong> Stadion I Wayan Dipta</p>
+                    <p><strong>👨‍💼 Pelatih:</strong> Tira Persikabo</p>
+                    <p><strong>📅 Berdiri:</strong> 2013</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Persebaya Surabaya</h3>
+                    <p><strong>📍 Kota:</strong> Surabaya</p>
+                    <p><strong>🏟️ Stadion:</strong> Stadion Gelora Bung Tomo</p>
+                    <p><strong>👨‍💼 Pelatih:</strong> Hendra Gunawan</p>
+                    <p><strong>📅 Berdiri:</strong> 1927</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Madura United</h3>
+                    <p><strong>📍 Kota:</strong> Madura</p>
+                    <p><strong>🏟️ Stadion:</strong> Stadion Madurejo</p>
+                    <p><strong>👨‍💼 Pelatih:</strong> Rahmad Darmawan</p>
+                    <p><strong>📅 Berdiri:</strong> 2008</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Standings Section -->
+        <section class="section" id="standings">
+            <h2>📊 Klasemen IEL 1</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Klub</th>
+                            <th>Main</th>
+                            <th>M</th>
+                            <th>S</th>
+                            <th>K</th>
+                            <th>MK</th>
+                            <th>KB</th>
+                            <th>SG</th>
+                            <th>Poin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="rank">1</td>
+                            <td><strong>Arema FC</strong></td>
+                            <td>10</td>
+                            <td>8</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>24</td>
+                            <td>8</td>
+                            <td>+16</td>
+                            <td class="points">25</td>
+                        </tr>
+                        <tr>
+                            <td class="rank">2</td>
+                            <td><strong>Persija Jakarta</strong></td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>21</td>
+                            <td>9</td>
+                            <td>+12</td>
+                            <td class="points">23</td>
+                        </tr>
+                        <tr>
+                            <td class="rank">3</td>
+                            <td><strong>PSM Makassar</strong></td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>20</td>
+                            <td>10</td>
+                            <td>+10</td>
+                            <td class="points">22</td>
+                        </tr>
+                        <tr>
+                            <td class="rank">4</td>
+                            <td><strong>Bali United</strong></td>
+                            <td>10</td>
+                            <td>6</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12</td>
+                            <td>+6</td>
+                            <td class="points">20</td>
+                        </tr>
+                        <tr>
+                            <td class="rank">5</td>
+                            <td><strong>Persebaya Surabaya</strong></td>
+                            <td>10</td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>15</td>
+                            <td>14</td>
+                            <td>+1</td>
+                            <td class="points">17</td>
+                        </tr>
+                        <tr>
+                            <td class="rank">6</td>
+                            <td><strong>Madura United</strong></td>
+                            <td>10</td>
+                            <td>4</td>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>-1</td>
+                            <td class="points">15</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- News Section -->
+        <section class="section" id="news">
+            <h2>📰 Berita Terkini</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Arema FC Raih Kemenangan 4-1</h3>
+                    <p>Arema FC berhasil meraih kemenangan spektakuler 4-1 atas Persebaya. Syaiful Indra mencetak 2 gol dalam pertandingan tersebut.</p>
+                    <p><strong>📅 25 Feb 2026</strong></p>
+                </div>
+                
+                <div class="card">
+                    <h3>Pemain Muda Indonesia Masuk Radar Eropa</h3>
+                    <p>Beberapa pemain muda berbakat dari Indonesia mulai menarik perhatian klub-klub besar dari Eropa.</p>
+                    <p><strong>📅 24 Feb 2026</strong></p>
+                </div>
+                
+                <div class="card">
+                    <h3>Analisis: Taktik Arema FC 2026</h3>
+                    <p>Dengan pelatih baru, Arema FC menerapkan formasi 4-3-3 yang lebih modern dan dinamis di musim 2026.</p>
+                    <p><strong>📅 23 Feb 2026</strong></p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>Indonesia Elit League</h4>
+                <p>Platform resmi kompetisi sepak bola elite di Indonesia dengan standar internasional.</p>
+            </div>
+            <div>
+                <h4>Tautan Cepat</h4>
+                <a href="#clubs">Klub</a>
+                <a href="#standings">Klasemen</a>
+                <a href="#news">Berita</a>
+            </div>
+            <div>
+                <h4>Hubungi Kami</h4>
+                <p>📧 info@iel.id</p>
+                <p>📱 +62-21-xxxx-xxxx</p>
+                <p>📍 Jakarta, Indonesia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Indonesia Elit League. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function scrollTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
